@@ -24,4 +24,15 @@ class AccountTest < ActiveSupport::TestCase
 
     refute account.valid?
   end
+
+  test "#find_by_identity using email" do
+    created_account = create(:account,
+                   email: "#{Faker::Internet.user_name}@random.com",
+                   username: Faker::Internet.user_name,
+                   password: '12345678')
+
+    account = Account.find_by_identity(created_account.email)
+
+    assert_instance_of Account, account
+  end
 end
