@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import posts from 'components/Posts.vue';
+import posts from './components/Posts.vue';
 
 export default {
   components: {
