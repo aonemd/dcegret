@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
+
   prepend_view_path Rails.root.join("frontend")
 
   rescue_from StandardError do |e|
