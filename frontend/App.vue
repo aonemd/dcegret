@@ -1,15 +1,16 @@
 <template>
   <div>
-    <posts></posts>
+    <navbar></navbar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import posts from './components/Posts.vue';
+import Navbar from './components/Navbar.vue';
 
 export default {
   components: {
-    'posts': posts
+    'navbar': Navbar
   }
 }
 </script>
