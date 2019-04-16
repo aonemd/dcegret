@@ -16,5 +16,6 @@ end
 module ActionDispatch
   class IntegrationTest
     include JSONResponse
+    include AuthenticatedToken
   end
 end

@@ -1,10 +1,12 @@
 class Api::V1::PostsController < Api::SecuredController
+  before_action :authenticate_account, only: [:create]
+
   def index
     render json: { posts: PostDecorator.decorate_collection(Post.all) }
   end
 
   def create
-    post = Post.new(post_params)
+    post = current_account.posts.new(post_params)
     post.save!
     render json: { post: PostDecorator.new(post).decorate }
   end
