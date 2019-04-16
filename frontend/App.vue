@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ key }}</h1>
+    <h1>{{ authenticated }}</h1>
     <navbar></navbar>
     <router-view></router-view>
   </div>
@@ -14,8 +14,8 @@ export default {
     'navbar': Navbar
   },
   computed: {
-    key() {
-      return this.$store.state.key;
+    authenticated() {
+      return this.$store.getters.is_account_authenticated;
     }
   }
 }

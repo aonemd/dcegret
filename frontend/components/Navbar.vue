@@ -2,16 +2,26 @@
   <nav>
     <ul>
       <li><router-link to="/" exact>Home</router-link></li>
-      <li><router-link to="/posts" exact>Posts</router-link></li>
-      <li><router-link to="/sign-up" exact>Sign Up</router-link></li>
-      <li><router-link to="/sign-in" exact>Sign In</router-link></li>
-      <li><router-link to="/sign-out" exact>Sign Out</router-link></li>
+      <li v-show="!authenticated"><router-link to="/posts" exact>Posts</router-link></li>
+      <li v-show="!authenticated"><router-link to="/sign-up" exact>Sign Up</router-link></li>
+      <li v-show="!authenticated"><router-link to="/sign-in" exact>Sign In</router-link></li>
+      <li v-show="authenticated">{{ username }}</li>
+      <li v-show="authenticated"><router-link to="/sign-out" exact>Sign Out</router-link></li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    authenticated() {
+      return this.$store.getters.is_account_authenticated;
+    },
+    username() {
+      return this.$store.getters.current_account_username;
+    }
+  }
+}
 </script>
 
 <style scoped>
