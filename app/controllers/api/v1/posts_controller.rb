@@ -1,4 +1,4 @@
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < Api::SecuredController
   def index
     render json: { posts: PostDecorator.decorate_collection(Post.all) }
   end
