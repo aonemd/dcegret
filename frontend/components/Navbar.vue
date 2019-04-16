@@ -3,6 +3,7 @@
     <ul>
       <li><router-link to="/" exact>Home</router-link></li>
       <li><router-link to="/posts" exact>Posts</router-link></li>
+      <li><router-link to="/sign-up" exact>Sign Up</router-link></li>
     </ul>
   </nav>
 </template>
