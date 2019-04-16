@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="posts__add-post-form">
+    <div v-show="authenticated" id="posts__add-post-form">
       <textarea placeholder="Post something..." v-model="postContent"></textarea>
       <button v-on:click="addNewPost">Add</button>
     </div>
@@ -25,12 +25,17 @@ export default {
       postContent: ''
     }
   },
-  created () {
+  computed: {
+    authenticated() {
+      return this.$store.getters.is_account_authenticated;
+    }
+  },
+  created() {
     api.all().then((response) => this.posts = response.data.posts);
   },
   methods: {
     addNewPost: function () {
-      api.create(this.postContent).then((response) => {
+      api.create(this.postContent, this.$store.getters.current_account_token).then((response) => {
         this.posts.unshift({ content: this.postContent });
       });
     }

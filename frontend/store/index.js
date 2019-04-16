@@ -16,6 +16,9 @@ export default new Vuex.Store({
     },
     current_account_username: (state) => {
       return secured.payload()['username'];
+    },
+    current_account_token: (state) => {
+      return localStorage.getItem('token');
     }
   }
 });
