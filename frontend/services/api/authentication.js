@@ -7,5 +7,11 @@ export default {
       username,
       password
     });
+  },
+  signIn(identity, password) {
+    return axios.post('/api/v1/sign_in.json', {
+      identity,
+      password
+    });
   }
 };
