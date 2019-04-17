@@ -30,4 +30,15 @@ export default {
 #container {
   margin: 100px auto;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-image: url('./assets/images/landing-image.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
 </style>
