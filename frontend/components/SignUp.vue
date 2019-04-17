@@ -9,7 +9,7 @@
         </div>
 
         <div class="sign-up__textbox">
-          <input type="text" placeholder="Email or Username" v-model="identity">
+          <input type="text" placeholder="Username" v-model="username">
         </div>
 
         <div class="sign-up__textbox">
