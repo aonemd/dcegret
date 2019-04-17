@@ -1,7 +1,9 @@
 <template>
   <div>
     <navbar></navbar>
-    <router-view></router-view>
+    <div id="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -19,3 +21,13 @@ export default {
   }
 }
 </script>
+
+<style>
+@import "assets/stylesheets/grid.css";
+@import "assets/stylesheets/typography.css";
+@import "assets/stylesheets/utils.css";
+
+#container {
+  margin: 100px auto;
+}
+</style>
