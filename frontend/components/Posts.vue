@@ -8,7 +8,7 @@
           v-model="postContent">
         </post-editor>
 
-        <button v-on:click="addNewPost">Add</button>
+        <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
       </div>
 
       <div v-for="post in posts">
@@ -25,10 +25,13 @@
 <script>
 import api from '../services/api/posts.js';
 import PostEditor from './posts/PostEditor';
+import PostSubmitButton from './posts/PostSubmitButton';
+
 
 export default {
   components: {
-    'post-editor': PostEditor
+    'post-editor': PostEditor,
+    'post-submit-button': PostSubmitButton
   },
   data() {
     return {
@@ -45,10 +48,9 @@ export default {
     api.all().then((response) => this.posts = response.data.posts);
   },
   methods: {
-    addNewPost: function () {
+    submitNewPost: function () {
       api.create(this.postContent, this.$store.getters.current_account_token).then((response) => {
         this.posts.unshift({ content: this.postContent });
-        this.postContent = '';
       });
     }
   }
@@ -63,5 +65,9 @@ export default {
   width: 500px;
   height: 200px;
   text-align: center;
+}
+
+#posts__add-post-form {
+  margin-bottom: 100px;
 }
 </style>
