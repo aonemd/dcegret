@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>{{ authenticated }}</h1>
     <navbar></navbar>
     <router-view></router-view>
   </div>
