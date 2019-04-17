@@ -1,21 +1,42 @@
 <template>
-  <div class="row">
-    <div class="col-4 col-m-6 center">
-      <div v-show="authenticated" id="posts__add-post-form">
-        <post-editor
-          :max-characters="180"
-          rows="4"
-          v-model="postContent">
-        </post-editor>
+  <div>
+    <div class="row">
+      <div class="col-4 col-m-6 center">
+        <div v-show="authenticated" id="posts__add-post-form">
+          <post-editor
+            :max-characters="180"
+            rows="4"
+            v-model="postContent">
+          </post-editor>
 
-        <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
+          <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
+        </div>
       </div>
+    </div>
 
-      <div v-for="post in posts">
-        <div class="post">
-          <h1>
-            {{ post.content }}
-          </h1>
+    <div v-for="post in posts">
+      <div class="row">
+        <div class="col-4 col-m-6 center">
+          <div class="posts__post-panel">
+            <div class="posts_post-owner-info left">
+              <img src="https://via.placeholder.com/50">
+              @username . 17-04-2019
+            </div>
+
+            <br>
+            <br>
+
+            <div class="posts__post-content left">
+              {{ post.content }}
+            </div>
+
+            <br>
+            <br>
+
+            <div class="posts__post-options">
+              Rechirp | Love
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,14 +78,35 @@ export default {
 }
 </script>
 
-<style scoped>
-.post {
+<style lang="scss" scoped>
+.posts__post-panel {
+  width: 100%;
+  padding: 30px;
   background: #eee;
-  margin: 10px auto;
-  padding: 2px;
-  width: 500px;
-  height: 200px;
-  text-align: center;
+  margin-top: -30px;
+  border-bottom: 3px solid #e1e8ed;
+  height: 300px;
+  position: relative;
+
+  .posts_post-owner-info {
+    vertical-align: middle;
+
+    img {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+    }
+  }
+
+  .posts__post-content {
+    margin-top: 20px;
+  }
+
+  .posts__post-options {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
 }
 
 #posts__add-post-form {
