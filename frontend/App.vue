@@ -1,9 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <div id="container">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,10 +24,6 @@ export default {
 @import "assets/stylesheets/grid.css";
 @import "assets/stylesheets/typography.css";
 @import "assets/stylesheets/utils.css";
-
-#container {
-  margin: 100px auto;
-}
 
 body {
   margin: 0;
