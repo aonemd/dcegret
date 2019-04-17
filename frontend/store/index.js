@@ -7,8 +7,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    authenticated: false,
-    account_username: ''
   },
   getters: {
     is_account_authenticated: (state) => {
