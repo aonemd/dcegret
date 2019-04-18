@@ -11,7 +11,7 @@
 
     <label
       id="post__editor-header"
-      :class="[{'post___over-max': isOverMax}, 'text-right']"
+      :class="[{'post___over-max': isOverMax}, 'text-left']"
       for="post__editor">
       {{ remaining }} characters left
     </label>

@@ -3,13 +3,15 @@
     <div class="row">
       <div class="col-4 col-m-6 center">
         <div v-show="authenticated" id="posts__add-post-form">
-          <post-editor
-            :max-characters="180"
-            rows="4"
-            v-model="postContent">
-          </post-editor>
+          <div class="posts__post-panel">
+            <post-editor
+              :max-characters="180"
+              rows="4"
+              v-model="postContent">
+            </post-editor>
 
-          <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
+            <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
+          </div>
         </div>
       </div>
     </div>
@@ -82,11 +84,12 @@ export default {
 .posts__post-panel {
   width: 100%;
   padding: 30px;
-  background: #eee;
+  background: #191919;
   margin-top: -30px;
-  border-bottom: 3px solid #e1e8ed;
+  border-bottom: 1px solid #262626;
   height: 300px;
   position: relative;
+  color: white;
 
   .posts_post-owner-info {
     vertical-align: middle;
@@ -109,7 +112,7 @@ export default {
   }
 }
 
-#posts__add-post-form {
-  margin-bottom: 100px;
-}
+/* #posts__add-post-form { */
+/*   margin-bottom: 100px; */
+/* } */
 </style>
