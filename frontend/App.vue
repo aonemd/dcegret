@@ -28,7 +28,7 @@ body {
   padding: 0;
 
   background-image: none;
-  background-color: #262626;
+  background-color: #191919;
 }
 
 body#landing {

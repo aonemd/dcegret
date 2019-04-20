@@ -84,9 +84,9 @@ export default {
 .posts__post-panel {
   width: 100%;
   padding: 30px;
-  background: #191919;
+  background: #262626;
   margin-top: -30px;
-  border-bottom: 1px solid #262626;
+  border-bottom: 1px solid #191919;
   height: 300px;
   position: relative;
   color: white;
@@ -111,8 +111,4 @@ export default {
     left: 10px;
   }
 }
-
-/* #posts__add-post-form { */
-/*   margin-bottom: 100px; */
-/* } */
 </style>
