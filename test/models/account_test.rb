@@ -35,4 +35,24 @@ class AccountTest < ActiveSupport::TestCase
 
     assert_instance_of Account, account
   end
+
+  test "should followe another account" do
+    followed_account = create(:account)
+    follower_account = create(:account)
+
+    follower_account.follow(followed_account)
+
+    assert follower_account.following?(followed_account)
+    assert followed_account.followers.include?(follower_account)
+  end
+
+  test "should unfollow an existing account" do
+    followed_account = build(:account)
+    follower_account = build(:account)
+
+    follower_account.follow(followed_account)
+    follower_account.unfollow(followed_account)
+
+    refute follower_account.following?(followed_account)
+  end
 end
