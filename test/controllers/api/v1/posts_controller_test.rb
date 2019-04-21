@@ -13,7 +13,7 @@ class Api::V1::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_equal json_response['posts'].count, Post.count
   end
 
-  test "#crate successfull" do
+  test "#create successfull" do
     post '/api/v1/posts', params: {
       post: { content: Faker::TvShows::Friends.quote }
     }, headers: { 'Authorization': "Bearer #{@token}" }
