@@ -6,6 +6,12 @@ Rails.application.routes.draw do
       post 'sign_up', to: 'registrations#create'
       post 'sign_in', to: 'sessions#create'
 
+      resources :accounts, only: [:index, :show] do
+        member do
+          get :following, :followers
+        end
+      end
+
       resources :posts, only: [:index, :create]
       get 'timeline', to: 'timeline#index'
     end
