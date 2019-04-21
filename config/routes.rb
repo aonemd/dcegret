@@ -11,6 +11,9 @@ Rails.application.routes.draw do
           get :following, :followers
         end
       end
+      namespace :accounts do
+        resources :relationships, only: [:create, :destroy]
+      end
 
       resources :posts, only: [:index, :create]
       get 'timeline', to: 'timeline#index'
