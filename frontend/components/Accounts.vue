@@ -4,10 +4,10 @@
         <div class="row">
           <div class="col-2 col-m-4 center">
             <router-link :to="'/account/' + account.id" exact>
-              <h2>
+              <h3>
                 <img src="https://via.placeholder.com/50">
                 @{{ account.username }}
-              </h2>
+              </h3>
             </router-link>
           </div>
         </div>
