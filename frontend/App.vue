@@ -38,5 +38,4 @@ body#landing {
   background-position: center;
   background-size: cover;
 }
-
 </style>
