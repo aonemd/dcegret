@@ -8,6 +8,7 @@
                 <img src="https://via.placeholder.com/50">
                 @{{ account.username }}
               </h3>
+              <hr>
             </router-link>
           </div>
         </div>
