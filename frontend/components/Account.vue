@@ -5,10 +5,10 @@
         <div class="panel">
           <img src="https://via.placeholder.com/150">
           <h3>
-            Full Name
+            @{{ account.username }}
           </h3>
           <p>
-          Follwoing (69) | Followers (69)
+          Follwoing ({{ account.following_count }}) | Followers ({{ account.follower_count }})
           </p>
         </div>
       </div>
