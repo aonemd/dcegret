@@ -15,6 +15,6 @@ class Api::V1::Accounts::PostsController < Api::SecuredController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :private)
   end
 end

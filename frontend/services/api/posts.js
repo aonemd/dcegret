@@ -13,9 +13,9 @@ export default {
     return axios.get('/api/v1/posts/' + id + '/by_account.json'
     );
   },
-  create(content, token) {
+  create(content, isPrivate, token) {
     return axios.post('/api/v1/accounts/posts.json',
-      { post: { content: content } },
+      { post: { content: content, private: isPrivate } },
       { headers: { Authorization: 'Bearer ' + token } }
     );
   }

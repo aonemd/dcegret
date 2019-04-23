@@ -10,6 +10,9 @@
               v-model="postContent">
             </post-editor>
 
+            <br>
+
+            Private Post <input type="checkbox" v-model="postIsPrivate"></input>
             <post-submit-button v-on:click.native="submitNewPost"></post-submit-button>
           </div>
         </div>
@@ -62,7 +65,8 @@ export default {
   data() {
     return {
       posts: [],
-      postContent: ''
+      postContent: '',
+      postIsPrivate: false
     }
   },
   computed: {
@@ -75,7 +79,7 @@ export default {
   },
   methods: {
     submitNewPost: function () {
-      api.create(this.postContent, this.$store.getters.current_account_token).then((response) => {
+      api.create(this.postContent, this.postIsPrivate, this.$store.getters.current_account_token).then((response) => {
         this.posts.unshift({ content: this.postContent });
       });
     }
