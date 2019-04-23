@@ -22,7 +22,10 @@
           <div class="posts__post-panel">
             <div class="posts_post-owner-info left">
               <img src="https://via.placeholder.com/50">
-              @{{ post.account.username }} . {{ post.created_at }}
+              <router-link :to="'/account/' + post.account.id" exact>
+                @{{ post.account.username }}
+              </router-link>
+              . {{ post.created_at }}
             </div>
 
             <br>
@@ -109,6 +112,11 @@ export default {
     position: absolute;
     bottom: 10px;
     left: 10px;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
   }
 }
 </style>
