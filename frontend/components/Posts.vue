@@ -22,7 +22,7 @@
           <div class="posts__post-panel">
             <div class="posts_post-owner-info left">
               <img src="https://via.placeholder.com/50">
-              @username . 17-04-2019
+              @{{ post.account.username }} . {{ post.created_at }}
             </div>
 
             <br>
