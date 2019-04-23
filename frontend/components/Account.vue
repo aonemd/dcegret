@@ -8,7 +8,7 @@
             @{{ account.username }}
           </h3>
           <p>
-          Follwoing ({{ account.following_count }}) | Followers ({{ account.follower_count }})
+          Following ({{ account.following_count }}) | Followers ({{ account.follower_count }})
           </p>
         </div>
       </div>
