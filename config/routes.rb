@@ -16,7 +16,13 @@ Rails.application.routes.draw do
           get :following, :followers
         end
       end
-      resources :posts, only: [:index, :create]
+
+      resources :posts, only: [:index] do
+        member do
+          get :by_account
+        end
+      end
+
       get 'timeline', to: 'timeline#index'
     end
   end

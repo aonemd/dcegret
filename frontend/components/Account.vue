@@ -58,7 +58,7 @@ export default {
   created() {
     api.show(this.account_id).then((response) => this.account = response.data.account);
 
-    postsApi.authenticated_all(this.$store.getters.current_account_token)
+    postsApi.account_all(this.account_id)
       .then((response) => this.posts = response.data.posts);
   }
 }
