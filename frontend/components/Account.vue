@@ -8,7 +8,13 @@
             @{{ account.username }}
           </h3>
           <p>
-          Following ({{ account.following_count }}) | Followers ({{ account.follower_count }})
+          <router-link :to="'/account/' + account.id + '/following'" exact>
+            Following ({{ account.following_count }})
+          </router-link>
+          |
+          <router-link :to="'/account/' + account.id + '/followers'" exact>
+            Followers ({{ account.follower_count }})
+          </router-link>
           </p>
         </div>
       </div>
@@ -74,6 +80,11 @@ export default {
   height: 350px;
   position: relative;
   color: white;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .posts__post-panel {
