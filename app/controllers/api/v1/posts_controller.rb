@@ -4,7 +4,7 @@ class Api::V1::PostsController < Api::SecuredController
   end
 
   def by_account
-    render json: { posts: PostDecorator.decorate_collection(set_account.public_posts) }
+    render json: { posts: PostDecorator.decorate_collection(set_account.posts.public_posts) }
   end
 
   private
