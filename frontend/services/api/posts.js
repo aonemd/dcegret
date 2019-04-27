@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   all() {
-    return axios.get('/api/v1/timeline.json');
+    return axios.get('/api/v1/remote/posts.json');
   },
   authenticated_all(token) {
     return axios.get('/api/v1/accounts/posts.json',

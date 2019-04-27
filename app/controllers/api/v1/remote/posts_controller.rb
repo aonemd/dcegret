@@ -1,4 +1,4 @@
-class Api::V1::TimelineController < ApplicationController
+class Api::V1::Remote::PostsController < ApplicationController
   def index
     local_posts = PostDecorator.decorate_collection(Post.all)
 

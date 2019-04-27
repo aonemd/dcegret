@@ -27,7 +27,9 @@ Rails.application.routes.draw do
         end
       end
 
-      get 'timeline', to: 'timeline#index'
+      namespace :remote do
+        get 'posts', to: 'posts#index'
+      end
     end
   end
 end
