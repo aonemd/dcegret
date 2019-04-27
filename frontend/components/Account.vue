@@ -17,12 +17,12 @@
           </router-link>
           </p>
           <p>
-          <input v-show="authenticated" v-if="!currentAccountIsFollowing"
+          <input v-show="authenticated && !same_as_current_account" v-if="!currentAccountIsFollowing"
                                         v-on:click="follow(account.id)"
                                         type="button"
                                         class="follow-submit__button"
                                         value="Follow">
-          <input v-show="authenticated" v-else
+          <input v-show="authenticated && !same_as_current_account" v-else
                                         v-on:click="unfollow(account.id)"
                                         type="button"
                                         class="follow-submit__button"
@@ -78,6 +78,9 @@ export default {
   computed: {
     authenticated() {
       return this.$store.getters.is_account_authenticated;
+    },
+    same_as_current_account() {
+      return this.$store.getters.current_account_id == this.account_id;
     }
   },
   created() {

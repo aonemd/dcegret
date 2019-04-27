@@ -28,10 +28,14 @@ class Account < ApplicationRecord
   end
 
   def follow(other_account)
+    return if self == other_account
+
     following << other_account
   end
 
   def unfollow(other_account)
+    return if self == other_account
+
     following.delete(other_account)
   end
 
