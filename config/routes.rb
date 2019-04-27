@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'sessions#create'
 
       namespace :accounts do
-        resources :relationships, only: [:create, :destroy]
+        resources :relationships, only: [:create, :destroy] do
+          member do
+            get :is_following
+          end
+        end
         resources :posts, only: [:index, :create]
       end
 

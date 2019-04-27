@@ -16,6 +16,18 @@
             Followers ({{ account.follower_count }})
           </router-link>
           </p>
+          <p>
+          <input v-show="authenticated" v-if="!currentAccountIsFollowing"
+                                        v-on:click="follow(account.id)"
+                                        type="button"
+                                        class="follow-submit__button"
+                                        value="Follow">
+          <input v-show="authenticated" v-else
+                                        v-on:click="unfollow(account.id)"
+                                        type="button"
+                                        class="follow-submit__button"
+                                        value="Unfollow">
+          </p>
         </div>
       </div>
     </div>
@@ -52,13 +64,20 @@
 <script>
 import api from '../services/api/account.js';
 import postsApi from '../services/api/posts.js';
+import followApi from '../services/api/follow.js'
 
 export default {
   data() {
     return {
       account_id: this.$route.params.id,
       account: {},
+      currentAccountIsFollowing: false,
       posts: []
+    }
+  },
+  computed: {
+    authenticated() {
+      return this.$store.getters.is_account_authenticated;
     }
   },
   created() {
@@ -66,6 +85,25 @@ export default {
 
     postsApi.account_all(this.account_id)
       .then((response) => this.posts = response.data.posts);
+
+    followApi.is_following(this.account_id, this.$store.getters.current_account_token).
+      then((response) => this.currentAccountIsFollowing = response.data.is_following);
+  },
+  methods: {
+    follow: function(id)  {
+      followApi.follow(id, this.$store.getters.current_account_token).
+        then(() => {
+          this.currentAccountIsFollowing = true;
+          this.account.follower_count += 1;
+        });
+    },
+    unfollow: function(id)  {
+      followApi.unfollow(id, this.$store.getters.current_account_token).
+        then(() => {
+          this.currentAccountIsFollowing = false;
+          this.account.follower_count -= 1;
+        });
+    }
   }
 }
 </script>
@@ -77,7 +115,7 @@ export default {
   background: #262626;
   margin-top: -30px;
   border-bottom: 1px solid #191919;
-  height: 350px;
+  height: 400px;
   position: relative;
   color: white;
 
@@ -116,5 +154,19 @@ export default {
     bottom: 10px;
     left: 10px;
   }
+}
+
+$primary-color: #407ee7;
+
+.follow-submit__button {
+  width: 20%;
+  background: none;
+  border: 2px solid $primary-color;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  cursor: pointer;
 }
 </style>

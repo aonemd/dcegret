@@ -7,7 +7,12 @@ class Api::V1::Accounts::RelationshipsController < Api::SecuredController
   end
 
   def destroy
-    account = Account::Relationship.find(params[:id]).followed
+    account = Account.find(params[:id])
     current_account.unfollow(account)
+  end
+
+  def is_following
+    account = Account.find(params[:id])
+    render json: { is_following: account.followed_by?(current_account) }
   end
 end
