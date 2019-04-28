@@ -27,6 +27,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :conversations, only: [:index, :show, :create]
+
       namespace :remote do
         get 'posts', to: 'posts#index'
       end
