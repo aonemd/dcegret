@@ -8,4 +8,3 @@ export default {
     return axios.get('/api/v1/accounts/' + id + '.json');
   }
 }
-

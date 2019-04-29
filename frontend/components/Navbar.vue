@@ -9,6 +9,7 @@
 
     <div class="menu">
       <router-link v-show="authenticated" to="/community" exact>Community</router-link>
+      <router-link v-show="authenticated" to="/messages" exact>Messages</router-link>
       <router-link v-show="!authenticated" to="/sign-up" exact>Sign Up</router-link>
       <router-link v-show="!authenticated" to="/sign-in" exact>Sign In</router-link>
       <span v-show="authenticated">{{ username }}</span>

@@ -7,6 +7,8 @@ import SignOut from '../components/SignOut.vue';
 import Posts from '../components/Posts.vue';
 import Accounts from '../components/Accounts.vue';
 import Account from '../components/Account.vue';
+import Messages from '../components/Messages.vue';
+import Message from '../components/Message.vue';
 import Following from '../components/Following.vue';
 import Followers from '../components/Followers.vue';
 
@@ -18,6 +20,8 @@ export default new Router({
     { path: '/sign-in', component: SignIn },
     { path: '/sign-out', component: SignOut },
     { path: '/posts', component: Posts },
+    { path: '/messages', component: Messages },
+    { path: '/message/:id', component: Message },
     { path: '/community', component: Accounts },
     { path: '/account/:id/following', component: Following },
     { path: '/account/:id/followers', component: Followers },

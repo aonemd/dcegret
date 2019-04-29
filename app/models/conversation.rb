@@ -15,4 +15,8 @@ class Conversation < ApplicationRecord
           (conversations.sender_id = ? AND conversations.recipient_id = ?)',
           sender_id, recipient_id, recipient_id, sender_id)
   }
+
+  def with(me)
+    me == sender ? recipient : sender
+  end
 end

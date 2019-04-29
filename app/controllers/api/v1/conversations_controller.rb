@@ -2,16 +2,17 @@ class Api::V1::ConversationsController < Api::SecuredController
   before_action :authenticate_account
 
   def index
-    conversations = Conversation.mine(current_account.id)
+    conversations = Conversation.mine(current_account.id).includes(:messages)
     render json: {
-      conversations: ConversationDecorator.decorate_collection(conversations)
+      conversations: ConversationDecorator.decorate_collection(conversations,
+                                                               options: { current_account: current_account })
     }
   end
 
   def show
     conversation = Conversation.mine(current_account.id).find(params[:id])
     render json: {
-      conversation: ConversationDecorator.new(conversation).decorate
+      conversation: ConversationDecorator.new(conversation).decorate(options: { current_account: current_account })
     }
   end
 
@@ -24,7 +25,9 @@ class Api::V1::ConversationsController < Api::SecuredController
     end
     conversation.messages.create(message_params)
 
-    respond_with ConversationDecorator.new(conversation).decorate
+    render json: {
+      conversation: ConversationDecorator.new(conversation).decorate(options: { current_account: current_account })
+    }
   end
 
   private

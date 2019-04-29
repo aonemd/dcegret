@@ -5,5 +5,5 @@ class Message < ApplicationRecord
   validates_presence_of :body, :conversation_id
   validates_length_of :body, maximum: 5000
 
-  default_scope { order(updated_at: :desc) }
+  scope :ordered, -> { order(updated_at: :asc) }
 end
