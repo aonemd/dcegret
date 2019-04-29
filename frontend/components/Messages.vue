@@ -3,8 +3,8 @@
     <div v-for="conversation in conversations">
       <div class="row">
         <div class="col-4 col-m-6 center text-center">
-          <router-link :to="'/message/' + conversation.id" exact>
-            with @{{ conversation.with }} . {{ conversation.created_at }}
+          <router-link :to="'/message/' + conversation.with.id" exact>
+            with @{{ conversation.with.username }} . {{ conversation.created_at }}
           </router-link>
           <hr>
         </div>

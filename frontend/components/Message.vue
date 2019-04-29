@@ -36,11 +36,11 @@ export default {
     return {
       messages: [],
       messageBody: '',
-      recipient_id: 6
+      recipient_id: this.$route.params.id
     }
   },
   created() {
-    api.show(1, this.$store.getters.current_account_token).
+    api.show(this.recipient_id, this.$store.getters.current_account_token).
       then((response) => this.messages = response.data.conversation.messages);
   },
   methods: {

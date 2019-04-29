@@ -27,6 +27,12 @@
                                         type="button"
                                         class="follow-submit__button"
                                         value="Unfollow">
+
+          <input v-show="authenticated && !same_as_current_account"
+                                        v-on:click="goToMessages(account.id)"
+                                        type="button"
+                                        class="follow-submit__button"
+                                        value="Message">
           </p>
         </div>
       </div>
@@ -106,6 +112,9 @@ export default {
           this.currentAccountIsFollowing = false;
           this.account.follower_count -= 1;
         });
+    },
+    goToMessages: function(id) {
+      this.$router.push({ path: '/message/' + id })
     }
   }
 }

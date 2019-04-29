@@ -10,7 +10,8 @@ class Api::V1::ConversationsController < Api::SecuredController
   end
 
   def show
-    conversation = Conversation.mine(current_account.id).find(params[:id])
+    my_conversations = Conversation.mine(current_account.id)
+    conversation     = my_conversations.where(recipient_id: params[:id]).or(my_conversations.where(sender_id: params[:id])).first
     render json: {
       conversation: ConversationDecorator.new(conversation).decorate(options: { current_account: current_account })
     }
