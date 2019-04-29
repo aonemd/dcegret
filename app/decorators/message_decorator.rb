@@ -1,7 +1,7 @@
 class MessageDecorator < Geckorate::Decorator
   include ActionView::Helpers::DateHelper
 
-  def decorate(options: {})
+  def decorate(options = {})
     {
       body: body,
       username: account.username,

@@ -1,7 +1,7 @@
 class ConversationDecorator < Geckorate::Decorator
   include ActionView::Helpers::DateHelper
 
-  def decorate(options: {})
+  def decorate(options = {})
     {
       id: id,
       with: AccountDecorator.new(with(options[:current_account])).decorate(),

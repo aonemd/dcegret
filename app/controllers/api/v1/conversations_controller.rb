@@ -5,7 +5,7 @@ class Api::V1::ConversationsController < Api::SecuredController
     conversations = Conversation.mine(current_account.id).includes(:messages)
     render json: {
       conversations: ConversationDecorator.decorate_collection(conversations,
-                                                               options: { current_account: current_account })
+                                                               current_account: current_account)
     }
   end
 
@@ -13,7 +13,7 @@ class Api::V1::ConversationsController < Api::SecuredController
     my_conversations = Conversation.mine(current_account.id)
     conversation     = my_conversations.where(recipient_id: params[:id]).or(my_conversations.where(sender_id: params[:id])).first
     render json: {
-      conversation: ConversationDecorator.new(conversation).decorate(options: { current_account: current_account })
+      conversation: ConversationDecorator.new(conversation).decorate(current_account: current_account)
     }
   end
 
@@ -27,7 +27,7 @@ class Api::V1::ConversationsController < Api::SecuredController
     conversation.messages.create(message_params)
 
     render json: {
-      conversation: ConversationDecorator.new(conversation).decorate(options: { current_account: current_account })
+      conversation: ConversationDecorator.new(conversation).decorate(current_account: current_account)
     }
   end
 
