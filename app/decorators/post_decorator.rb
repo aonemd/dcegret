@@ -1,7 +1,7 @@
 class PostDecorator < Geckorate::Decorator
   include ActionView::Helpers::DateHelper
 
-  def decorate
+  def decorate(options: {})
     {
       content: content,
       account: AccountDecorator.new(account).decorate,

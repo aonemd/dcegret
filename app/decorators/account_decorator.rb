@@ -1,5 +1,5 @@
 class AccountDecorator < Geckorate::Decorator
-  def decorate
+  def decorate(options: {})
     {
       id: id,
       email: email,
