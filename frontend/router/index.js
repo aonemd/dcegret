@@ -12,20 +12,34 @@ import Message from '../components/Message.vue';
 import Following from '../components/Following.vue';
 import Followers from '../components/Followers.vue';
 
+import secured from '../services/secured';
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     { path: '/sign-up', component: SignUp },
     { path: '/sign-in', component: SignIn },
     { path: '/sign-out', component: SignOut },
-    { path: '/posts', component: Posts },
-    { path: '/messages', component: Messages },
-    { path: '/message/:id', component: Message },
-    { path: '/community', component: Accounts },
-    { path: '/account/:id/following', component: Following },
-    { path: '/account/:id/followers', component: Followers },
-    { path: '/account/:id', component: Account },
-    { path: '/', component: Posts }
+    { path: '/posts', component: Posts, meta: { auth: true } },
+    { path: '/messages', component: Messages, meta: { auth: true } },
+    { path: '/message/:id', component: Message, meta: { auth: true } },
+    { path: '/community', component: Accounts, meta: { auth: true } },
+    { path: '/account/:id/following', component: Following, meta: { auth: true } },
+    { path: '/account/:id/followers', component: Followers, meta: { auth: true } },
+    { path: '/account/:id', component: Account, meta: { auth: true } },
+    { path: '/', component: Posts, meta: { auth: true } }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    if (!secured.authenticated()) {
+      return next({ path: '/sign-in' });
+    }
+  }
+
+  next();
+});
+
+export default router;
