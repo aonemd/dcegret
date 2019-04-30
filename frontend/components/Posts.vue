@@ -42,7 +42,9 @@
             <br>
 
             <div class="posts__post-options">
-              Rechirp | Love
+              Rechirp |
+              <input type="button" v-on:click="love(post.id)" value="Love" v-if="!post.like_id">
+              <input type="button" v-on:click="unlove(post.id, post.like_id)" value="Unlove" v-else>
             </div>
           </div>
         </div>
@@ -75,12 +77,22 @@ export default {
     }
   },
   created() {
-    api.all().then((response) => this.posts = response.data.posts);
+    api.all(this.$store.getters.current_account_token).then((response) => this.posts = response.data.posts);
   },
   methods: {
     submitNewPost: function () {
       api.create(this.postContent, this.postIsPrivate, this.$store.getters.current_account_token).then((response) => {
         this.posts.unshift({ content: this.postContent });
+      });
+    },
+    love: function(id) {
+      api.like(id, this.$store.getters.current_account_token).then((response) => {
+        location.reload();
+      });
+    },
+    unlove: function(id, like_id) {
+      api.unlike(id, like_id, this.$store.getters.current_account_token).then((response) => {
+        location.reload();
       });
     }
   }

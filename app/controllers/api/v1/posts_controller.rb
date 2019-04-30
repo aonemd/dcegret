@@ -1,6 +1,8 @@
 class Api::V1::PostsController < Api::SecuredController
+  before_action :authenticate_account
+
   def index
-    render json: { posts: PostDecorator.decorate_collection(Post.public_posts) }
+    render json: { posts: PostDecorator.decorate_collection(Post.public_posts, current_account: current_account) }
   end
 
   def by_account

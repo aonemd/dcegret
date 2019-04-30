@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         member do
           get :by_account
         end
+
+        resources :likes, only: [:create, :destroy], controller: 'posts/likes'
       end
 
       resources :conversations, only: [:index, :show, :create]

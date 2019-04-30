@@ -19,6 +19,8 @@ class Api::SecuredController < ApplicationController
   private
 
   def valid_header?
+    puts request.env.fetch('HTTP_AUTHORIZATION', '').scan(/Bearer/)
+    puts "*" * 69
     !!request.env.fetch('HTTP_AUTHORIZATION', '').scan(/Bearer/).flatten.first
   end
 

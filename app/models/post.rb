@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  has_many :likes, dependent: :destroy, class_name: 'Post::Like'
   belongs_to :account
 
   validates_presence_of :content, message: 'content cannot be blank'
@@ -8,4 +9,8 @@ class Post < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_posts, -> { where(private: false) }
   scope :private_posts, -> { where(private: true) }
+
+  def liked_by?(account)
+    likes.where(account_id: account.id).exists?
+  end
 end

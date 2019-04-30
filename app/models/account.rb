@@ -2,6 +2,7 @@ class Account < ApplicationRecord
   has_secure_password
 
   has_many :posts
+  has_many :likes, dependent: :destroy, class_name: 'Post::Like'
   has_many :passive_relationships, class_name:  'Account::Relationship',
                                    foreign_key: 'followed_id',
                                    dependent:   :destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_172234) do
+ActiveRecord::Schema.define(version: 2019_04_30_160406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 2019_04_28_172234) do
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
+  create_table "post_likes", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_post_likes_on_account_id"
+    t.index ["post_id", "account_id"], name: "index_post_likes_on_post_id_and_account_id", unique: true
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -62,5 +72,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_172234) do
 
   add_foreign_key "messages", "accounts"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "post_likes", "accounts"
+  add_foreign_key "post_likes", "posts"
   add_foreign_key "posts", "accounts"
 end
