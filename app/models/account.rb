@@ -11,12 +11,15 @@ class Account < ApplicationRecord
                                    dependent:   :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :following, through: :active_relationships,  source: :followed
+  has_one :settings, class_name: 'Account::Setting', dependent: :destroy
 
   validates_presence_of :email, :username, :password
   validates_uniqueness_of :email, :username
   validates_format_of :email, with: /@/
   validates_format_of :username, without: /@/
   validates_length_of :password, minimum: 8
+
+  after_commit :initialize_settings, on: :create
 
   def self.find_by_identity(identity)
     return nil unless identity
@@ -46,5 +49,11 @@ class Account < ApplicationRecord
 
   def followed_by?(other_account)
     followers.include?(other_account)
+  end
+
+  private
+
+  def initialize_settings
+    self.settings = Account::Setting.create
   end
 end
