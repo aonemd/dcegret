@@ -82,7 +82,7 @@ export default {
   methods: {
     submitNewPost: function () {
       api.create(this.postContent, this.postIsPrivate, this.$store.getters.current_account_token).then((response) => {
-        this.posts.unshift({ content: this.postContent });
+        this.posts.unshift(response.data.post);
       });
     },
     love: function(id) {
