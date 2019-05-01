@@ -26,6 +26,17 @@ export default {
     return axios.get('/api/v1/accounts/relationships/' + id + '/is_following' + '.json',
       { headers: { Authorization: 'Bearer ' + token } }
     );
+  },
+  requested_followers(token) {
+    return axios.get('/api/v1/accounts/requested_followers.json',
+      { headers: { Authorization: 'Bearer ' + token } }
+    );
+  },
+  accept_request(account_id, token) {
+    return axios.put('api/v1/accounts/' + account_id + '/accept_request.json',
+      {},
+      { headers: { Authorization: 'Bearer ' + token } }
+    );
   }
 }
 

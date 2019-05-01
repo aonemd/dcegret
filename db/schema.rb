@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_190602) do
+ActiveRecord::Schema.define(version: 2019_05_01_155033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_190602) do
     t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "accepted", default: true
     t.index ["followed_id"], name: "index_account_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_account_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_account_relationships_on_follower_id"

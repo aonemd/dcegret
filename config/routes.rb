@@ -23,6 +23,11 @@ Rails.application.routes.draw do
       resources :accounts, only: [:index, :show] do
         member do
           get :following, :followers
+          put :accept_request
+        end
+
+        collection do
+          get :requested_followers
         end
       end
 

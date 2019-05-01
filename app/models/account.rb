@@ -3,13 +3,20 @@ class Account < ApplicationRecord
 
   has_many :posts
   has_many :likes, dependent: :destroy, class_name: 'Post::Like'
-  has_many :passive_relationships, class_name:  'Account::Relationship',
+  has_many :passive_relationships, -> { accepted },
+                                   class_name:  'Account::Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent:   :destroy
+  has_many :requested_passive_relationships, -> { requested },
+                                   class_name:  'Account::Relationship',
                                    foreign_key: 'followed_id',
                                    dependent:   :destroy
   has_many :active_relationships,  class_name:  'Account::Relationship',
                                    foreign_key: 'follower_id',
                                    dependent:   :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :requested_followers, through: :requested_passive_relationships,
+                                 source: :follower
   has_many :following, through: :active_relationships,  source: :followed
   has_one :settings, class_name: 'Account::Setting', dependent: :destroy
 

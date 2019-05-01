@@ -4,4 +4,15 @@ class Account::Relationship < ApplicationRecord
 
   validates :followed_id, presence: true
   validates :follower_id, presence: true
+
+  scope :accepted, -> { where(accepted: true) }
+  scope :requested, -> { where(accepted: false) }
+
+  before_create :set_accepted
+
+  private
+
+  def set_accepted
+    self.accepted = false if followed.settings.private_profile?
+  end
 end
