@@ -42,7 +42,6 @@
             <br>
 
             <div class="posts__post-options">
-              Rechirp |
               <input type="button" v-on:click="love(post.id)" value="Love" v-if="!post.like_id">
               <input type="button" v-on:click="unlove(post.id, post.like_id)" value="Unlove" v-else>
             </div>
