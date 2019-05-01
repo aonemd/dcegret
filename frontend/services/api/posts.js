@@ -11,8 +11,9 @@ export default {
       { headers: { Authorization: 'Bearer ' + token } }
     );
   },
-  account_all(id) {
-    return axios.get('/api/v1/posts/' + id + '/by_account.json'
+  account_all(id, token) {
+    return axios.get('/api/v1/posts/' + id + '/by_account.json',
+      { headers: { Authorization: 'Bearer ' + token } }
     );
   },
   create(content, isPrivate, token) {

@@ -92,7 +92,7 @@ export default {
   created() {
     api.show(this.account_id).then((response) => this.account = response.data.account);
 
-    postsApi.account_all(this.account_id)
+    postsApi.account_all(this.account_id, this.$store.getters.current_account_token)
       .then((response) => this.posts = response.data.posts);
 
     followApi.is_following(this.account_id, this.$store.getters.current_account_token).
