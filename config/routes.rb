@@ -13,6 +13,11 @@ Rails.application.routes.draw do
           end
         end
         resources :posts, only: [:index, :create]
+        resources :settings, only: [:index] do
+          collection do
+            put :update
+          end
+        end
       end
 
       resources :accounts, only: [:index, :show] do

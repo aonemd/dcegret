@@ -11,6 +11,7 @@ import Messages from '../components/Messages.vue';
 import Message from '../components/Message.vue';
 import Following from '../components/Following.vue';
 import Followers from '../components/Followers.vue';
+import Settings from '../components/Settings.vue';
 
 import secured from '../services/secured';
 
@@ -25,6 +26,7 @@ const router = new Router({
     { path: '/messages', component: Messages, meta: { auth: true } },
     { path: '/message/:id', component: Message, meta: { auth: true } },
     { path: '/community', component: Accounts, meta: { auth: true } },
+    { path: '/account/settings', component: Settings, meta: { auth: true } },
     { path: '/account/:id/following', component: Following, meta: { auth: true } },
     { path: '/account/:id/followers', component: Followers, meta: { auth: true } },
     { path: '/account/:id', component: Account, meta: { auth: true } },
