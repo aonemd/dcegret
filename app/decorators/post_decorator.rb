@@ -6,6 +6,7 @@ class PostDecorator < Geckorate::Decorator
       id: id,
       content: content,
       account: AccountDecorator.new(account).decorate,
+      likes_count: likes.size,
       created_at: time_ago_in_words(created_at)
     }
 

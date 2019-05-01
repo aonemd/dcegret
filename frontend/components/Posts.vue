@@ -42,8 +42,9 @@
             <br>
 
             <div class="posts__post-options">
-              <input type="button" v-on:click="love(post.id)" value="Love" v-if="!post.like_id">
-              <input type="button" v-on:click="unlove(post.id, post.like_id)" value="Unlove" v-else>
+              <input type="button" class="like-button" v-on:click="love(post.id)" value="Love" v-if="!post.like_id">
+              <input type="button" class="like-button" v-on:click="unlove(post.id, post.like_id)" value="Unlove" v-else>
+              {{ post.likes_count }}
             </div>
           </div>
         </div>
@@ -133,5 +134,13 @@ export default {
     color: white;
     text-decoration: none;
   }
+}
+
+.like-button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
 }
 </style>
