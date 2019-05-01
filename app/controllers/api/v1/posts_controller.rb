@@ -8,7 +8,7 @@ class Api::V1::PostsController < Api::SecuredController
   def by_account
     if set_account != current_account &&
         set_account.settings.private_profile? &&
-        !current_account.following?(set_account)
+        !set_account.followed_by?(current_account)
       unauthorized!
     else
       render json: {

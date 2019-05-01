@@ -13,7 +13,7 @@ class Api::V1::AccountsController < Api::SecuredController
   def following
     if @account != current_account &&
         @account.settings.private_profile? &&
-        !current_account.following?(@account)
+        !@account.followed_by?(current_account)
       unauthorized!
     else
       render json: { accounts: AccountDecorator.decorate_collection(@account.following) }
@@ -23,7 +23,7 @@ class Api::V1::AccountsController < Api::SecuredController
   def followers
     if @account != current_account &&
         @account.settings.private_profile? &&
-        !current_account.following?(@account)
+        !@account.followed_by?(current_account)
       unauthorized!
     else
       render json: { accounts: AccountDecorator.decorate_collection(@account.followers) }
