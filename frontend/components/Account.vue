@@ -58,7 +58,8 @@
               <br>
 
               <div class="posts__post-options">
-                Rechirp | Love
+                <input type="button" v-on:click="love(post.id)" value="Love" v-if="!post.like_id">
+                <input type="button" v-on:click="unlove(post.id, post.like_id)" value="Unlove" v-else>
               </div>
             </div>
           </div>
@@ -115,6 +116,16 @@ export default {
     },
     goToMessages: function(id) {
       this.$router.push({ path: '/message/' + id })
+    },
+    love: function(id) {
+      postsApi.like(id, this.$store.getters.current_account_token).then((response) => {
+        location.reload();
+      });
+    },
+    unlove: function(id, like_id) {
+      postsApi.unlike(id, like_id, this.$store.getters.current_account_token).then((response) => {
+        location.reload();
+      });
     }
   }
 }

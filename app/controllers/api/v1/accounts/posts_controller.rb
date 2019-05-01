@@ -3,7 +3,7 @@ class Api::V1::Accounts::PostsController < Api::SecuredController
 
   def index
     posts = current_account.posts
-    render json: { posts: PostDecorator.decorate_collection(posts) }
+    render json: { posts: PostDecorator.decorate_collection(posts, current_account: current_account) }
   end
 
   def create
