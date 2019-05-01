@@ -1,11 +1,15 @@
 import axios from 'axios'
 
 export default {
-  all_following(id) {
-    return axios.get('/api/v1/accounts/' + id + '/following' + '.json');
+  all_following(id, token) {
+    return axios.get('/api/v1/accounts/' + id + '/following' + '.json',
+      { headers: { Authorization: 'Bearer ' + token } }
+    );
   },
-  all_followers(id) {
-    return axios.get('/api/v1/accounts/' + id + '/followers' + '.json');
+  all_followers(id, token) {
+    return axios.get('/api/v1/accounts/' + id + '/followers' + '.json',
+      { headers: { Authorization: 'Bearer ' + token } }
+    );
   },
   follow(id, token) {
     return axios.post('/api/v1/accounts/relationships.json',

@@ -27,7 +27,7 @@ export default {
     }
   },
   created() {
-    followApi.all_following(this.account_id)
+    followApi.all_following(this.account_id, this.$store.getters.current_account_token)
       .then(response => this.accounts = response.data.accounts);
   }
 }

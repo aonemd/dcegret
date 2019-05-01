@@ -6,9 +6,15 @@ class Api::V1::PostsController < Api::SecuredController
   end
 
   def by_account
-    render json: {
-      posts: PostDecorator.decorate_collection(set_account.posts.public_posts, current_account: current_account)
-    }
+    if set_account != current_account &&
+        set_account.settings.private_profile? &&
+        !current_account.following?(set_account)
+      unauthorized!
+    else
+      render json: {
+        posts: PostDecorator.decorate_collection(set_account.posts.public_posts, current_account: current_account)
+      }
+    end
   end
 
   private
