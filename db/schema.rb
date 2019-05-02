@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_125823) do
+ActiveRecord::Schema.define(version: 2019_05_02_134434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,12 +73,14 @@ ActiveRecord::Schema.define(version: 2019_05_02_125823) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "account_id"
     t.boolean "private", default: false
+    t.text "encrypted_content", null: false
+    t.string "encrypted_content_iv"
     t.index ["account_id"], name: "index_posts_on_account_id"
+    t.index ["encrypted_content_iv"], name: "index_posts_on_encrypted_content_iv", unique: true
   end
 
   add_foreign_key "account_settings", "accounts"

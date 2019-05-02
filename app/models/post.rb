@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  attr_encrypted :content, key: Rails.application.credentials.encryptor[0..31]
+
   has_many :likes, dependent: :destroy, class_name: 'Post::Like'
   belongs_to :account
 
