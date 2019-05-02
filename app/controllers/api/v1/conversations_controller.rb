@@ -18,7 +18,15 @@ class Api::V1::ConversationsController < Api::SecuredController
   end
 
   def create
-    recipient    = Account.find_by_id(params[:recipient_id])
+    recipient = Account.find_by_id(params[:recipient_id])
+
+    if recipient != current_account &&
+        recipient.settings.private_profile? &&
+        !recipient.followed_by?(current_account)
+      unauthorized!
+      return
+    end
+
     conversation = Conversation.between(current_account.id, params[:recipient_id]).first
 
     unless conversation.present?
