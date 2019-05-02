@@ -24,6 +24,14 @@ module Dcegret
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    # filter these out of the logs
+    config.filter_parameters += [:content,
+                                 :encrypted_content,
+                                 :encrypted_content_iv,
+                                 :body,
+                                 :encrypted_body,
+                                 :encrypted_body_iv]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
