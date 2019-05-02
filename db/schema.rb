@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_155033) do
+ActiveRecord::Schema.define(version: 2019_05_02_125823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,14 +50,16 @@ ActiveRecord::Schema.define(version: 2019_05_01_155033) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "body", null: false
     t.bigint "conversation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "read_at"
     t.bigint "account_id"
+    t.text "encrypted_body", null: false
+    t.string "encrypted_body_iv"
     t.index ["account_id"], name: "index_messages_on_account_id"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["encrypted_body_iv"], name: "index_messages_on_encrypted_body_iv", unique: true
   end
 
   create_table "post_likes", force: :cascade do |t|

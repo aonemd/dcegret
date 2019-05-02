@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  attr_encrypted :body, key: Rails.application.credentials.encryptor[0..31]
+
   belongs_to :conversation
   belongs_to :account
 
