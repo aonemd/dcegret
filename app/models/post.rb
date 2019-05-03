@@ -5,8 +5,8 @@ class Post < ApplicationRecord
   belongs_to :account
 
   validates_presence_of :content, message: 'content cannot be blank'
-  validates :content, length: { maximum: 180,
-                                too_long: "%{count} is the maximum allowed" }
+  validates_length_of :content, maximum: 180,
+                                too_long: "%{count} is the maximum allowed"
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :public_posts, -> { where(private: false) }
