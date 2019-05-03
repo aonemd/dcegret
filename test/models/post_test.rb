@@ -12,4 +12,22 @@ class PostTest < ActiveSupport::TestCase
 
     refute post.valid?
   end
+
+  test "#liked_by? returns true if a post is liked by account" do
+    account = mock
+    post    = create(:post)
+    account.stubs(:id).returns(1)
+
+    post.likes.create(account_id: account.id)
+
+    assert post.liked_by?(account)
+  end
+
+  test "#liked_by? returns false if a post is not liked by account" do
+    account = mock
+    post    = create(:post)
+    account.stubs(:id).returns(1)
+
+    refute post.liked_by?(account)
+  end
 end
