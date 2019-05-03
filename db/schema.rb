@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_134434) do
+ActiveRecord::Schema.define(version: 2019_05_03_174335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2019_05_02_134434) do
     t.integer "recipient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", unique: true
+    t.index ["sender_id", "recipient_id"], name: "index_conversations_on_sender_id_and_recipient_id", unique: true
+    t.index ["sender_id"], name: "index_conversations_on_sender_id", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
@@ -84,6 +87,8 @@ ActiveRecord::Schema.define(version: 2019_05_02_134434) do
   end
 
   add_foreign_key "account_settings", "accounts"
+  add_foreign_key "conversations", "accounts", column: "recipient_id"
+  add_foreign_key "conversations", "accounts", column: "sender_id"
   add_foreign_key "messages", "accounts"
   add_foreign_key "messages", "conversations"
   add_foreign_key "post_likes", "accounts"
