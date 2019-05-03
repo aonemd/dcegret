@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   has_secure_password
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy, class_name: 'Post::Like'
   has_many :passive_relationships, -> { accepted },
                                    class_name:  'Account::Relationship',
@@ -17,7 +17,7 @@ class Account < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :requested_followers, through: :requested_passive_relationships,
                                  source: :follower
-  has_many :following, through: :active_relationships,  source: :followed
+  has_many :following, through: :active_relationships, source: :followed
   has_one :settings, class_name: 'Account::Setting', dependent: :destroy
 
   validates_presence_of :email, :username, :password
