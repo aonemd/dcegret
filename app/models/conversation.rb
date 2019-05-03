@@ -4,7 +4,7 @@ class Conversation < ApplicationRecord
   belongs_to :sender, foreign_key: :sender_id, class_name: 'Account'
   belongs_to :recipient, foreign_key: :recipient_id, class_name: 'Account'
 
-  validates_uniqueness_of :sender_id, scope: :recipient_id
+  validates_uniqueness_of :sender, scope: :recipient
 
   default_scope { order(updated_at: :desc) }
   scope :mine, lambda { |my_id|
