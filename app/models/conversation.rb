@@ -6,7 +6,7 @@ class Conversation < ApplicationRecord
 
   validates_uniqueness_of :sender, scope: :recipient
 
-  default_scope { order(updated_at: :desc) }
+  scope :ordered, -> { order(updated_at: :desc) }
   scope :mine, lambda { |my_id|
     where('conversations.sender_id = ? OR conversations.recipient_id = ?', my_id, my_id)
   }
