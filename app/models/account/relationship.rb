@@ -7,6 +7,7 @@ class Account::Relationship < ApplicationRecord
   scope :accepted, -> { where(accepted: true) }
   scope :requested, -> { where(accepted: false) }
 
+  # TODO: refactor this
   before_create :set_accepted
 
   private
