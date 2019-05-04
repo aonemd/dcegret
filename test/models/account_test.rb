@@ -34,8 +34,8 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "should followe another account" do
-    followed_account = create(:account)
-    follower_account = create(:account)
+    followed_account = create(:account_with_settings)
+    follower_account = create(:account_with_settings)
 
     follower_account.follow(followed_account)
 
@@ -44,8 +44,8 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "should unfollow an existing account" do
-    followed_account = create(:account)
-    follower_account = create(:account)
+    followed_account = create(:account_with_settings)
+    follower_account = create(:account_with_settings)
 
     follower_account.follow(followed_account)
     follower_account.unfollow(followed_account)

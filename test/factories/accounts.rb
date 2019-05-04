@@ -4,4 +4,8 @@ FactoryBot.define do
     username { Faker::Internet.user_name }
     password { "12345678" }
   end
+
+  factory :account_with_settings, parent: :account do
+    association :settings, factory: :account_setting
+  end
 end
