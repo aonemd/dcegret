@@ -26,7 +26,12 @@ class Account < ApplicationRecord
   validates_format_of :username, without: /@/
   validates_length_of :password, minimum: 8
 
-  after_commit :initialize_settings, on: :create
+  def self.create_with_settings(params)
+    new(params).tap do |account|
+      account.settings = Account::Setting.create
+      account.save!
+    end
+  end
 
   def self.find_by_identity(identity)
     return nil unless identity
@@ -56,11 +61,5 @@ class Account < ApplicationRecord
 
   def followed_by?(other_account)
     followers.include?(other_account)
-  end
-
-  private
-
-  def initialize_settings
-    self.settings = Account::Setting.create
   end
 end
