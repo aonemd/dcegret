@@ -15,7 +15,7 @@ A small twitter clone for internet security course
 
 - [] Revisit the decentralization feature
 - [] Revisit the security measures
-- [] Make sure the database layer has proper constraints
+- [X] Make sure the database layer has proper constraints
 - [] Refactor the API
 - [] Refactor the frontend code
 - [] Redo the design
