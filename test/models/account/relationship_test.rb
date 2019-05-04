@@ -20,4 +20,12 @@ class Account::RelationshipTest < ActiveSupport::TestCase
 
     refute @relationship.valid?
   end
+
+  test "should set accepted to false if account has a private_profile" do
+    followed                          = create(:account_with_settings)
+    followed.settings.private_profile = true
+    relationship                      = create(:account_relationship, followed: followed)
+
+    refute relationship.accepted
+  end
 end
