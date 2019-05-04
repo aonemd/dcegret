@@ -14,9 +14,8 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "#liked_by? returns true if a post is liked by account" do
-    account = mock
+    account = create(:account)
     post    = create(:post)
-    account.stubs(:id).returns(1)
 
     post.likes.create(account_id: account.id)
 
