@@ -26,10 +26,7 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "#find_by_identity using email" do
-    created_account = create(:account,
-                   email: "#{Faker::Internet.user_name}@random.com",
-                   username: Faker::Internet.user_name,
-                   password: '12345678')
+    created_account = create(:account)
 
     account = Account.find_by_identity(created_account.email)
 
@@ -43,12 +40,12 @@ class AccountTest < ActiveSupport::TestCase
     follower_account.follow(followed_account)
 
     assert follower_account.following?(followed_account)
-    assert followed_account.followers.include?(follower_account)
+    assert followed_account.followed_by?(follower_account)
   end
 
   test "should unfollow an existing account" do
-    followed_account = build(:account)
-    follower_account = build(:account)
+    followed_account = create(:account)
+    follower_account = create(:account)
 
     follower_account.follow(followed_account)
     follower_account.unfollow(followed_account)
