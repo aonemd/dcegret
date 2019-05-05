@@ -45,5 +45,10 @@ Rails.application.routes.draw do
         get 'posts', to: 'posts#index'
       end
     end
+
+    namespace :v2 do
+      post 'sign_up', to: 'registrations#create'
+      post 'sign_in', to: 'sessions#create'
+    end
   end
 end

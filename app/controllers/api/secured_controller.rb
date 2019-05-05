@@ -14,7 +14,6 @@ class Api::SecuredController < ApplicationController
 
   def unauthorized!
     render json: { errors: ['Unauthenticated'] }, status: :unauthorized
-    return
   end
 
   private
